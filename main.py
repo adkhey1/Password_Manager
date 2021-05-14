@@ -14,6 +14,7 @@ if __name__ == '__main__':
     print_hi('PyCharm', '17')
 
     PLZ = 65929
+    Master_Password = 'Key123'
 
     if PLZ is not None:
         print(PLZ)
