@@ -17,5 +17,4 @@ if __name__ == '__main__':
 
     if PLZ is not None:
         print(PLZ)
-moin
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
