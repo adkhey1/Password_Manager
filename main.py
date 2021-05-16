@@ -23,6 +23,8 @@ if __name__ == '__main__':
         print("Press 'B' to Delete a Password")
         print("Press 'C' to change the Master Password\n")
 
+pdi
+
         decision = input("Choose your decision: ")
 
         if decision == "A":
