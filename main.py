@@ -13,9 +13,36 @@ def print_hi(name, alter):
 if __name__ == '__main__':
     print_hi('PyCharm', '17')
 
-    PLZ = 65929
     Master_Password = 'Key123'
 
-    if PLZ is not None:
-        print(PLZ)
+    master_Password_Try = input("Login with your Master Password: ")
+
+    if Master_Password == master_Password_Try:
+
+        print("Press 'A' for a New Password")
+        print("Press 'B' to Delete a Password")
+        print("Press 'C' to change the Master Password\n")
+
+        decision = input("Choose your decision: ")
+
+        if decision == "A":
+
+            title = input("\nWrite down the Title: ")
+            username = input("Write down the Username: ")
+            password = input("Write down the Password: ")
+
+
+    else:
+        master_Password_Try = input("Login with your Master Password: ")
+
+
+
+
+
+
+
+
+
+
+
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
