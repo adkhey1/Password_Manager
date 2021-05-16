@@ -31,6 +31,16 @@ if __name__ == '__main__':
             username = input("Write down the Username: ")
             password = input("Write down the Password: ")
 
+        elif decision == "B":
+
+            choose = input("Write the Title of the deleted Password")
+        elif decision == "C":
+
+            new_master_password = input("\nChoose a new Master Password: ")
+        else:
+            print("Unknown decision")
+
+
 
     else:
         master_Password_Try = input("Login with your Master Password: ")
