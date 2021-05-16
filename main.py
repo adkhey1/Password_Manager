@@ -6,7 +6,7 @@
 
 def print_hi(name, alter):
     # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name} ist {alter} Jahre alt')
+    print(f'Welcome to SaveWord,')
 
 
 # Press the green button in the gutter to run the script.
@@ -19,37 +19,36 @@ if __name__ == '__main__':
 
     if Master_Password == master_Password_Try:
 
-        print("Press 'A' for a New Password")
-        print("Press 'B' to Delete a Password")
-        print("Press 'C' to change the Master Password\n")
+        print("Press '1' for a New Password")
+        print("Press '2' to Delete a Password")
+        print("Press '3' to change the Master Password\n")
 
         decision = input("Choose your decision: ")
 
-        if decision == "A":
+        if decision == "1":
 
             title = input("\nWrite down the Title: ")
             username = input("Write down the Username: ")
             password = input("Write down the Password: ")
 
-        elif decision == "B":
+        elif decision == "2":
 
             choose = input("Write the Title of the deleted Password")
-        elif decision == "C":
+        elif decision == "3":
 
             new_master_password = input("\nChoose a new Master Password: ")
         else:
             print("Unknown decision")
 
 
-
-    else:
+if Master_Password !=master_Password_Try:
         master_Password_Try = input("Login with your Master Password: ")
 
+asdasd
 
 
 
-
-
+sasdasd
 
 
 
