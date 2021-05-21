@@ -5,8 +5,7 @@
 
 
 def print_hi(name, alter):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Welcome to SaveWord,')
+    # Use a breakpoint in the code line below to debug your script.o
 
 
 # Press the green button in the gutter to run the script.
@@ -44,12 +43,7 @@ if __name__ == '__main__':
 if Master_Password !=master_Password_Try:
         master_Password_Try = input("Login with your Master Password: ")
 
-asdasd
-
-
-
-sasdasd
-
+asdsadsadsadsadsadsadxycsycsdasd
 
 
 
