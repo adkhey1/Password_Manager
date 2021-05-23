@@ -6,9 +6,17 @@ def print_hi(name, alter):
     print(f'Hi, {name} ist {alter} Jahre alt')
 
 
-if __name__ == '__main__':
+def is_correct_master_password():
+    master_password_try = input("Login with your Master Password: ")
 
-    print_hi('PyCharm', '17')
+    if master_password_try == master_password:
+        return True
+    else:
+        print('Master Passwort falsch')
+        return is_correct_master_password()
+
+
+if __name__ == '__main__':
 
     connection = db.connect_to_db()
     db.create_table(connection)
@@ -17,9 +25,7 @@ if __name__ == '__main__':
 
     master_password = 'Key123'
 
-    master_Password_Try = input("Login with your Master Password: ")
-
-    if master_password == master_Password_Try:
+    if is_correct_master_password():
 
         print("Press 'A' for a New Password")
         print("Press 'B' to Delete a Password")
@@ -42,7 +48,3 @@ if __name__ == '__main__':
             new_master_password = input("\nChoose a new Master Password: ")
         else:
             print("Unknown decision")
-
-
-    else:
-        master_Password_Try = input("Login with your Master Password: ")
