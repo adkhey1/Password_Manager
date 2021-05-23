@@ -20,7 +20,7 @@ def insert_data(connection, title, username, password):
 
 def read_data(connection, password_nr):
     cursor = connection.cursor()
-    cursor.execute("SELECT * FROM password WHERE password_nr = ?", password_nr)
+    cursor.execute("SELECT * FROM password WHERE password_nr = ?", str(password_nr))
 
     return cursor.fetchall()
 
