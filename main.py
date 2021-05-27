@@ -16,7 +16,6 @@ def is_correct_master_password():
         return is_correct_master_password()
 
 
-
 if __name__ == '__main__':
 
     connection = db.connect_to_db()
