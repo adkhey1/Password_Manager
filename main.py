@@ -35,14 +35,6 @@ def chance_master_password():
     new_master_password = input("\nChoose a new Master Password: ")
 
 
-def exit_program():
-    exit()
-
-
-def andere():
-    print("Unknown decision")
-
-
 if __name__ == '__main__':
 
     connection = db.connect_to_db()
@@ -57,7 +49,8 @@ if __name__ == '__main__':
             print("Press 'A' for a New Password")
             print("Press 'B' to Delete a Password")
             print("Press 'C' to change the Master Password")
-            print("Press 'D' to exit\n")
+            print("Press 'D' to exit")
+            print("Press 'E' to view all Data")
 
             decision = input("Choose your decision: ")
 
@@ -71,12 +64,13 @@ if __name__ == '__main__':
                 chance_master_password()
 
             elif decision == "D":
-                exit_program()
+                exit()
+
+            elif decision == "E":
+                if is_correct_master_password():
+                    print(db.read_all(connection))
 
             else:
-                andere()
+                print("Unknown decision")
 
-
-        print(db.read_data(connection, 1))
-        print(db.read_all(connection))
-
+        #print(db.read_data(connection, 1))
