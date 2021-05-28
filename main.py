@@ -16,6 +16,20 @@ def is_correct_master_password():
         return is_correct_master_password()
 
 
+def new_password():
+    title = input("\nWrite down the Title: ")
+    username = input("Write down the Username: ")
+    password = input("Write down the Password: ")
+
+
+def delete_password():
+    choose = input("Write the Title of the deleted Password")
+
+
+def chance_master_password():
+    new_master_password = input("\nChoose a new Master Password: ")
+
+
 if __name__ == '__main__':
 
     connection = db.connect_to_db()
@@ -31,20 +45,16 @@ if __name__ == '__main__':
         print("Press 'B' to Delete a Password")
         print("Press 'C' to change the Master Password\n")
 
-
         decision = input("Choose your decision: ")
 
         if decision == "A":
-
-            title = input("\nWrite down the Title: ")
-            username = input("Write down the Username: ")
-            password = input("Write down the Password: ")
+            new_password()
 
         elif decision == "B":
+            delete_password()
 
-            choose = input("Write the Title of the deleted Password")
         elif decision == "C":
+            chance_master_password()
 
-            new_master_password = input("\nChoose a new Master Password: ")
         else:
             print("Unknown decision")
