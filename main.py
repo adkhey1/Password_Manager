@@ -1,11 +1,6 @@
 import DatabaseConnector as db
 
 
-def print_hi(name, alter):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name} ist {alter} Jahre alt')
-
-
 def is_correct_master_password(i=0):
     if i == 5:
         return False
@@ -42,31 +37,35 @@ if __name__ == '__main__':
 
     master_password = 'Key123'
 
+    print("Welcome to safe word\n")
     if is_correct_master_password():
 
         while True:
 
-            print("Press 'A' for a New Password")
-            print("Press 'B' to Delete a Password")
-            print("Press 'C' to change the Master Password")
-            print("Press 'D' to exit")
-            print("Press 'E' to view all Data")
+            print("\n---------------------------------")
+            print("Action Menu:\n")
+            print("Press '1' for a New Password")
+            print("Press '2' to Delete a Password")
+            print("Press '3' to change the Master Password")
+            print("Press '4' to view all Data")
+            print("Press '5' to exit")
+            print("---------------------------------\n")
 
             decision = input("Choose your decision: ")
 
-            if decision == "A":
+            if decision == "1":
                 new_password()
 
-            elif decision == "B":
+            elif decision == "2":
                 delete_password()
 
-            elif decision == "C":
+            elif decision == "3":
                 chance_master_password()
 
-            elif decision == "D":
+            elif decision == "5":
                 exit()
 
-            elif decision == "E":
+            elif decision == "4":
                 if is_correct_master_password():
                     print(db.read_all(connection))
 
