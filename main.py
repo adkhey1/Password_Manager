@@ -20,10 +20,24 @@ def new_password():
     username = input("Write down the Username: ")
     password = input("Write down the Password: ")
     db.insert_data(connection, title, username, password)
+    print("\nThe new Password is saved.")
 
 
 def delete_password():
-    choose = input("Write the Title of the deleted Password")
+    choose = input("Write the PasswordNr of the deleted Password: ")
+    delete_decision = input("\n---------------------------------"
+                            "\nAre you sure you want to delete the data?\n\n1 to delete\n2 to cancel"
+                            "\n3 to go back to the Action Menu\n---------------------------------"
+                            "\n\nChoose your decision: ")
+    if delete_decision == "1":
+        db.delete_data_nr(connection, choose)
+        print("\nThe Password Number: ", choose, " has been deleted.")
+    elif delete_decision == "2":
+        return delete_password()
+    elif delete_decision == "3":
+        return True
+    else:
+        return print("Unknown decision\n"), delete_password()
 
 
 def chance_master_password():

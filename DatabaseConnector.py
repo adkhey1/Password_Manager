@@ -32,24 +32,10 @@ def read_all(connection):
     return cursor.fetchall()
 
 
-def delete_data_nr(connection):
+def delete_data_nr(connection, password_nr):
     cursor = connection.cursor()
     cursor.execute("DELETE FROM password WHERE password_nr =?", str(password_nr))
-
-
-def delete_data_title(connection):
-    cursor = connection.cursor()
-    cursor.execute("DELETE FROM password WHERE title =?", str(title))
-
-
-def delete_data_username(connection):
-    cursor = connection.cursor()
-    cursor.execute("DELETE FROM password WHERE username =?", str(username))
-
-
-def delete_data_password(connection):
-    cursor = connection.cursor()
-    cursor.execute("DELETE FROM password WHERE password =?", str(password))
+    connection.commit()
 
 
 def close_db_connection(connection):
