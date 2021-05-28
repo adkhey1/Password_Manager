@@ -49,24 +49,26 @@ if __name__ == '__main__':
 
     if is_correct_master_password():
 
-        print("Press 'A' for a New Password")
-        print("Press 'B' to Delete a Password")
-        print("Press 'C' to change the Master Password")
-        print("Press 'D' to exit\n")
+        while True:
 
-        decision = input("Choose your decision: ")
+            print("Press 'A' for a New Password")
+            print("Press 'B' to Delete a Password")
+            print("Press 'C' to change the Master Password")
+            print("Press 'D' to exit\n")
 
-        if decision == "A":
-            new_password()
+            decision = input("Choose your decision: ")
 
-        elif decision == "B":
-            delete_password()
+            if decision == "A":
+                new_password()
 
-        elif decision == "C":
-            chance_master_password()
+            elif decision == "B":
+                delete_password()
 
-        elif decision == "D":
-            exit_program()
+            elif decision == "C":
+                chance_master_password()
 
-        else:
-            andere()
+            elif decision == "D":
+                exit_program()
+
+            else:
+                andere()
