@@ -1,4 +1,5 @@
 import DatabaseConnector as db
+import Master_Passwort_DB as db2
 
 
 def is_correct_master_password(i=0):
@@ -7,7 +8,7 @@ def is_correct_master_password(i=0):
 
     master_password_try = input("Login with your Master Password: ")
 
-    if master_password_try == master_password:
+    if master_password_try == db2.read_data(connection2, master_password_try):
         return True
     else:
         print('Incorrect Master Password')
@@ -45,11 +46,11 @@ def chance_master_password():
 
 
 if __name__ == '__main__':
-
     connection = db.connect_to_db()
+    connection2 = db2.connect_to_db()
     db.create_table(connection)
+    db2.create_table(connection2)
 
-    master_password = 'Key123'
 
     print("Welcome to safe word\n")
     if is_correct_master_password():
@@ -64,6 +65,8 @@ if __name__ == '__main__':
             print("Press '4' to view all Data")
             print("Press '5' to exit")
             print("---------------------------------\n")
+
+
 
             decision = input("Choose your decision: ")
 
