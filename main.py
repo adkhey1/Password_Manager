@@ -51,8 +51,8 @@ if __name__ == '__main__':
     db.create_table(connection)
     db2.create_table(connection2)
 
-
     print("Welcome to safe word\n")
+
     if is_correct_master_password():
 
         while True:
@@ -65,8 +65,6 @@ if __name__ == '__main__':
             print("Press '4' to view all Data")
             print("Press '5' to exit")
             print("---------------------------------\n")
-
-
 
             decision = input("Choose your decision: ")
 
@@ -89,4 +87,4 @@ if __name__ == '__main__':
             else:
                 print("Unknown decision")
 
-        #print(db.read_data(connection, 1))
+        # print(db.read_data(connection, 1))

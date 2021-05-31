@@ -15,7 +15,8 @@ def ask_length():
 
 
 def ask_password_writing():
-    password_writing = input('Wie soll ihr Passswort aussehen?\nGroßschreibung(1)\nKleinschreibung(2)\nGroß- und kleinschreibung(3)')
+    password_writing = input('Wie soll ihr Passswort aussehen?\nGroßschreibung(1)\nKleinschreibung(2)'
+                             '\nGroß- und kleinschreibung(3)')
     try:
         password_writing = int(password_writing)
         if 0 < password_writing <= 3:
