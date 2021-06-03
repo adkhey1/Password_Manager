@@ -48,6 +48,16 @@ class Main:
         new_master_password = input("\nChoose a new Master Password: ")
         self.masterpassword_controller.update_master_password(self, new_master_password)
 
+    def view_data(self):
+        choose = input("\n1 to view all Data\n2 to view certain Data")
+        if choose == "1":
+            if self.is_correct_master_password():
+                print(self.password_controller.read_all())
+        elif choose == "2":
+            password_nr = input("\nChoose your password number")
+            self.password_controller.read_data(password_nr)
+
+
     def all(self):
         self.password_controller.create_password_table()
         self.master_password_controller.create_master_password_table()
@@ -63,7 +73,7 @@ class Main:
                 print("Press '1' for a New Password")
                 print("Press '2' to Delete a Password")
                 print("Press '3' to change the Master Password")
-                print("Press '4' to view all Data")
+                print("Press '4' to view Data")
                 print("Press '5' to exit")
                 print("---------------------------------\n")
 
@@ -82,6 +92,7 @@ class Main:
                     exit()
 
                 elif decision == "4":
+                    self.view_data()
                     if self.is_correct_master_password():
                         print(self.password_controller.read_all())
 
