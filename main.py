@@ -1,4 +1,4 @@
-#from MasterPasswordController import MasterPasswordController
+from MasterPasswordController import MasterPasswordController
 from PasswordController import PasswordController
 
 
@@ -13,7 +13,7 @@ class Main:
 
         master_password_try = input("Login with your Master Password: ")
 
-        if master_password_try == 'Key123':
+        if master_password_try == MasterPasswordController.read_data(self):
             return True
         else:
             print('Incorrect Master Password')
