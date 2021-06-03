@@ -1,11 +1,6 @@
 import sqlite3
 
 
-def connect_to_db():
-    connection = sqlite3.connect("Password_Database.db")
-    return connection
-
-
 def create_table(connection):
     cursor = connection.cursor()
     cursor.execute("""CREATE TABLE IF NOT EXISTS

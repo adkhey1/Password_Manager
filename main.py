@@ -1,90 +1,93 @@
-import DatabaseConnector as db
-import Master_Passwort_DB as db2
+#from MasterPasswordController import MasterPasswordController
+from PasswordController import PasswordController
+
+class Main:
+
+    def __init__(self):
+        self.password_controller = PasswordController()
+
+    def is_correct_master_password(self, i=0):
+        if i == 5:
+            return False
+
+        master_password_try = input("Login with your Master Password: ")
+
+        if master_password_try == 'Key123':
+            return True
+        else:
+            print('Incorrect Master Password')
+            i += 1
+            return self.is_correct_master_password(i)
 
 
-def is_correct_master_password(i=0):
-    if i == 5:
-        return False
-
-    master_password_try = input("Login with your Master Password: ")
-
-    if master_password_try == db2.read_data(connection2, master_password_try):
-        return True
-    else:
-        print('Incorrect Master Password')
-        i += 1
-        return is_correct_master_password(i)
+    def new_password(self):
+        title = input("\nWrite down the Title: ")
+        username = input("Write down the Username: ")
+        password = input("Write down the Password: ")
+        self.password_controller.insert_data(title, username, password)
+        print("\nThe new Password is saved.")
 
 
-def new_password():
-    title = input("\nWrite down the Title: ")
-    username = input("Write down the Username: ")
-    password = input("Write down the Password: ")
-    db.insert_data(connection, title, username, password)
-    print("\nThe new Password is saved.")
+    def delete_password(self):
+        choose = input("Write the PasswordNr of the deleted Password: ")
+        delete_decision = input("\n---------------------------------"
+                                "\nAre you sure you want to delete the data?\n\n1 to delete\n2 to cancel"
+                                "\n3 to go back to the Action Menu\n---------------------------------"
+                                "\n\nChoose your decision: ")
+        if delete_decision == "1":
+            self.password_controller.delete_data(choose)
+            print("\nThe Password Number: ", choose, " has been deleted.")
+        elif delete_decision == "2":
+            return delete_password()
+        elif delete_decision == "3":
+            return True
+        else:
+            return print("Unknown decision\n"), delete_password()
 
 
-def delete_password():
-    choose = input("Write the PasswordNr of the deleted Password: ")
-    delete_decision = input("\n---------------------------------"
-                            "\nAre you sure you want to delete the data?\n\n1 to delete\n2 to cancel"
-                            "\n3 to go back to the Action Menu\n---------------------------------"
-                            "\n\nChoose your decision: ")
-    if delete_decision == "1":
-        db.delete_data_nr(connection, choose)
-        print("\nThe Password Number: ", choose, " has been deleted.")
-    elif delete_decision == "2":
-        return delete_password()
-    elif delete_decision == "3":
-        return True
-    else:
-        return print("Unknown decision\n"), delete_password()
+    def chance_master_password(self):
+        new_master_password = input("\nChoose a new Master Password: ")
 
+    def all(self):
+        self.password_controller.create_password_table()
 
-def chance_master_password():
-    new_master_password = input("\nChoose a new Master Password: ")
+        print("Welcome to safe word\n")
 
+        if self.is_correct_master_password():
 
-if __name__ == '__main__':
-    connection = db.connect_to_db()
-    connection2 = db2.connect_to_db()
-    db.create_table(connection)
-    db2.create_table(connection2)
+            while True:
 
-    print("Welcome to safe word\n")
+                print("\n---------------------------------")
+                print("Action Menu:\n")
+                print("Press '1' for a New Password")
+                print("Press '2' to Delete a Password")
+                print("Press '3' to change the Master Password")
+                print("Press '4' to view all Data")
+                print("Press '5' to exit")
+                print("---------------------------------\n")
 
-    if is_correct_master_password():
+                decision = input("Choose your decision: ")
 
-        while True:
+                if decision == "1":
+                    self.new_password()
 
-            print("\n---------------------------------")
-            print("Action Menu:\n")
-            print("Press '1' for a New Password")
-            print("Press '2' to Delete a Password")
-            print("Press '3' to change the Master Password")
-            print("Press '4' to view all Data")
-            print("Press '5' to exit")
-            print("---------------------------------\n")
+                elif decision == "2":
+                    self.delete_password()
 
-            decision = input("Choose your decision: ")
+                elif decision == "3":
+                    self.chance_master_password()
 
-            if decision == "1":
-                new_password()
+                elif decision == "5":
+                    exit()
 
-            elif decision == "2":
-                delete_password()
+                elif decision == "4":
+                    if self.is_correct_master_password():
+                        print(self.password_controller.read_all())
 
-            elif decision == "3":
-                chance_master_password()
+                else:
+                    print("Unknown decision")
 
-            elif decision == "5":
-                exit()
+            # print(self.password_controller.read_data(1))
 
-            elif decision == "4":
-                if is_correct_master_password():
-                    print(db.read_all(connection))
-
-            else:
-                print("Unknown decision")
-
-        # print(db.read_data(connection, 1))
+main = Main()
+main.all()
