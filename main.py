@@ -6,6 +6,7 @@ class Main:
 
     def __init__(self):
         self.password_controller = PasswordController()
+        self.master_password_controller = MasterPasswordController()
 
     def is_correct_master_password(self, i=0):
         if i == 5:
@@ -13,7 +14,7 @@ class Main:
 
         master_password_try = input("Login with your Master Password: ")
 
-        if master_password_try == MasterPasswordController.read_data(self, master_password_try):
+        if master_password_try == 'Key123':
             return True
         else:
             print('Incorrect Master Password')
@@ -37,17 +38,19 @@ class Main:
             self.password_controller.delete_data(choose)
             print("\nThe Password Number: ", choose, " has been deleted.")
         elif delete_decision == "2":
-            return delete_password()
+            return self.delete_password()
         elif delete_decision == "3":
             return True
         else:
-            return print("Unknown decision\n"), delete_password()
+            return print("Unknown decision\n"), self.delete_password()
 
     def chance_master_password(self):
         new_master_password = input("\nChoose a new Master Password: ")
+        self.masterpassword_controller.update_master_password(self, new_master_password)
 
     def all(self):
         self.password_controller.create_password_table()
+        self.master_password_controller.create_master_password_table()
 
         print("Welcome to safe word\n")
 
