@@ -11,3 +11,19 @@ class MasterPasswordController:
       Master_password(master_password VARCHAR, lastlogin DATE)""" and f"INSERT INTO Master_password "
                                                                       f"(master_password,lastlogin) VALUES (Key123,"
                                                                       f"{datetime.now()})")
+
+    def read_data(self):
+        self.service.execute_command(f"SELECT * FROM Master_password WHERE master_password = {master_password}")
+
+    def update_master_password(self):
+        self.service.execute_command("UPDATE Master_password SET master_password = ? WHERE master_password = ",
+                                     str(master_password))
+
+    def update_last_login(self):
+        self.service.execute_command("UPDATE Master_password SET lastlogin = ? WHERE lastlogin = lastlogin ",
+                                     datetime.now())
+
+    def close_database(self):
+        self.connection.close()
+
+

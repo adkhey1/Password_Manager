@@ -22,6 +22,9 @@ class PasswordController:
     def delete_data(self, password_nr):
         self.service.execute_command(f"DELETE FROM password WHERE password_nr ={str(password_nr)}")
 
+    def close_database(self):
+        self.connection.close()
+
 
 
 

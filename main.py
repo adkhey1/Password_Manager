@@ -1,6 +1,7 @@
 #from MasterPasswordController import MasterPasswordController
 from PasswordController import PasswordController
 
+
 class Main:
 
     def __init__(self):
@@ -19,14 +20,12 @@ class Main:
             i += 1
             return self.is_correct_master_password(i)
 
-
     def new_password(self):
         title = input("\nWrite down the Title: ")
         username = input("Write down the Username: ")
         password = input("Write down the Password: ")
         self.password_controller.insert_data(title, username, password)
         print("\nThe new Password is saved.")
-
 
     def delete_password(self):
         choose = input("Write the PasswordNr of the deleted Password: ")
@@ -43,7 +42,6 @@ class Main:
             return True
         else:
             return print("Unknown decision\n"), delete_password()
-
 
     def chance_master_password(self):
         new_master_password = input("\nChoose a new Master Password: ")
