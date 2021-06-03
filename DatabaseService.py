@@ -6,9 +6,12 @@ class DatabaseService:
     def __init__(self):
         self.connection = sqlite3.connect("Database.db")
 
-    def execute_command(self, sql_command):
+    def execute_command(self, sql_command, params=None):
         cursor = self.connection.cursor()
-        cursor.execute(sql_command)
+        if params is None:
+            cursor.execute(sql_command)
+        else:
+            cursor.execute(sql_command, params)
         self.connection.commit()
         return cursor.fetchall()
 
