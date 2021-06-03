@@ -57,7 +57,6 @@ class Main:
             password_nr = input("\nChoose your password number")
             self.password_controller.read_data(password_nr)
 
-
     def all(self):
         self.password_controller.create_password_table()
         self.master_password_controller.create_master_password_table()
