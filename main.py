@@ -92,8 +92,6 @@ class Main:
 
                 elif decision == "4":
                     self.view_data()
-                    if self.is_correct_master_password():
-                        print(self.password_controller.read_all())
 
                 else:
                     print("Unknown decision")
