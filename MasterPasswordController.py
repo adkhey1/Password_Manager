@@ -1,4 +1,5 @@
 from DatabaseService import DatabaseService
+import datetime
 
 
 class MasterPasswordController:
@@ -12,14 +13,14 @@ class MasterPasswordController:
                                                                       f"(master_password,lastlogin) VALUES (Key123,"
                                                                       f"{datetime.now()})")
 
-    def read_data(self):
+    def read_data(self, master_password):
         self.service.execute_command(f"SELECT * FROM Master_password WHERE master_password = {master_password}")
 
-    def update_master_password(self):
+    def update_master_password(self, master_password):
         self.service.execute_command("UPDATE Master_password SET master_password = ? WHERE master_password = ",
                                      str(master_password))
 
-    def update_last_login(self):
+    def update_last_login(self, lli):
         self.service.execute_command("UPDATE Master_password SET lastlogin = ? WHERE lastlogin = lastlogin ",
                                      datetime.now())
 

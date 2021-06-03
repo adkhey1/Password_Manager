@@ -13,7 +13,7 @@ class Main:
 
         master_password_try = input("Login with your Master Password: ")
 
-        if master_password_try == MasterPasswordController.read_data(self):
+        if master_password_try == MasterPasswordController.read_data(self, master_password_try):
             return True
         else:
             print('Incorrect Master Password')
