@@ -1,5 +1,6 @@
 from MasterPasswordController import MasterPasswordController
 from PasswordController import PasswordController
+from ClipboardService import ClipboardService
 
 
 class Main:
@@ -7,6 +8,7 @@ class Main:
     def __init__(self):
         self.password_controller = PasswordController()
         self.master_password_controller = MasterPasswordController()
+        self.clipboard = ClipboardService()
 
     def is_correct_master_password(self, i=0):
         if i == 5:
@@ -55,11 +57,13 @@ class Main:
                 print(self.password_controller.read_all())
         elif choose == "2":
             password_nr = input("\nChoose your password number")
-            print(self.password_controller.read_data(password_nr))
+            number, title, username, password = self.password_controller.read_data(password_nr)[0]
+            print("Your password for", username, " was copied to clipboard for the next 30 seconds")
+            self.clipboard.copy_to_clipboard(password)
 
     def all(self):
         self.password_controller.create_password_table()
-        #self.master_password_controller.create_master_password_table()
+        self.master_password_controller.create_master_password_table()
 
         print("Welcome to safe word\n")
 
