@@ -22,8 +22,7 @@ class MasterPasswordController:
                                      str(master_password))
 
     def update_timestamp(self):
-        self.service.execute_command("UPDATE Master_password SET timestamp = CURRENT_TIMESTAMP"
-                                     " WHERE timestamp = timestamp")
+        self.service.execute_command("UPDATE Master_password SET timestamp = CURRENT_TIMESTAMP")
 
     def close_database(self):
         self.connection.close()

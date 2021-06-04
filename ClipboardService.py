@@ -11,5 +11,4 @@ class ClipboardService:
     def delete_after_seconds(self, seconds):
         time.sleep(20)
         self.copy_to_clipboard("")
-        pass
 

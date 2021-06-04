@@ -16,7 +16,11 @@ class GeneratePassword:
         password_length = input('Wie lang soll dein Passwort sein?: ')
         try:
             password_length = int(password_length)
-            return password_length
+            if password_length >= 8:
+                return password_length
+            else:
+                print("Please enter an integer higher than 8")
+                return self.ask_length()
         except ValueError:
             # Handle the exception
             print('Please enter an integer')
@@ -90,6 +94,12 @@ class GeneratePassword:
             choose = lower + num
         elif password_writing == 3 and password_symblos == 1 and password_digit == 2:
             choose = upper + lower + num
+        elif password_writing == 2 and password_symblos == 2 and password_digit == 2:
+            choose = lower
+        elif password_writing == 1 and password_symblos == 2 and password_digit == 2:
+            choose = upper
+        elif password_writing == 3 and password_symblos == 2 and password_digit == 2:
+            choose = upper + lower
 
         temp = random.sample(choose, length)
 
