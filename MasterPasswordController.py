@@ -1,5 +1,4 @@
 from DatabaseService import DatabaseService
-import datetime
 
 
 class MasterPasswordController:
