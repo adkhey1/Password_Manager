@@ -6,9 +6,10 @@ class ClipboardService:
 
     def copy_to_clipboard(self, text):
         clipboard.copy(text)
-        return self.delete_after_seconds(20)
+        self.delete_after_seconds(20)
 
     def delete_after_seconds(self, seconds):
         time.sleep(20)
         self.copy_to_clipboard("")
         pass
+

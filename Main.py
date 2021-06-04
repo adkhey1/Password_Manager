@@ -60,10 +60,10 @@ class Main:
             number, title, username, password = self.password_controller.read_data(password_nr)[0]
             print("Your password for", username, " was copied to clipboard for the next 30 seconds")
             self.clipboard.copy_to_clipboard(password)
-            self.action_menu()
+            return self.action_menu()
 
         else:
-            return print("Unknown decision\n")
+            return print("\nUnknown decision")
 
     def action_menu(self):
 
