@@ -17,6 +17,7 @@ class Main:
             return False
 
         master_password_try = input("Login with your Master Password: ")
+        #master_password_try = Entry(root, show = "*")
 
         if master_password_try == self.master_password_controller.read_master_password():
             return True
@@ -28,8 +29,15 @@ class Main:
     def new_password(self):
         title = input("\nWrite down the Title: ")
         username = input("Write down the Username: ")
-        password = input("Write down the Password: ")
-        self.password_controller.insert_data(title, username, password)
+        choice = input("1 to autogenerate password \n2 to write your own password: ")
+        if choice == "2":
+            password = input("Write down the Password: ")
+            self.password_controller.insert_data(title, username, password)
+        elif choice == "1":
+            password = self.password_generator.generate_password()
+            self.password_controller.insert_data(title, username, password)
+        else:
+            print("Unknown decision")
         print("\nThe new Password is saved.")
 
     def delete_password(self):
