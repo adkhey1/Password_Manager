@@ -1,6 +1,7 @@
 from MasterPasswordController import MasterPasswordController
 from PasswordController import PasswordController
 from ClipboardService import ClipboardService
+from GeneratePassword import GeneratePassword
 
 
 class Main:
@@ -9,6 +10,7 @@ class Main:
         self.password_controller = PasswordController()
         self.master_password_controller = MasterPasswordController()
         self.clipboard = ClipboardService()
+        self.password_generator = GeneratePassword()
 
     def is_correct_master_password(self, i=0):
         if i == 5:

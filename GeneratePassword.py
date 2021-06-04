@@ -2,7 +2,7 @@ import random
 import string
 
 
-class PasswordGenerator:
+class GeneratePassword:
 
     def generate_password(self):
         password_length = self.ask_length()
@@ -98,6 +98,6 @@ class PasswordGenerator:
         print(password)
 
 
-main = PasswordGenerator()
+main = GeneratePassword()
 
 main.generate_password()
