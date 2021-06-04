@@ -16,7 +16,7 @@ class Main:
 
         master_password_try = input("Login with your Master Password: ")
 
-        if master_password_try == 'Key123':
+        if master_password_try == self.master_password_controller.read_master_password():
             return True
         else:
             print('Incorrect Master Password')
@@ -64,6 +64,7 @@ class Main:
     def all(self):
         self.password_controller.create_password_table()
         self.master_password_controller.create_master_password_table()
+        self.master_password_controller.insert_data()
 
         print("Welcome to safe word\n")
 
