@@ -1,4 +1,5 @@
 from DatabaseService import DatabaseService
+import pandas as pd
 
 
 class PasswordController:
@@ -17,7 +18,9 @@ class PasswordController:
         return self.service.execute_command(f"SELECT * FROM password WHERE password_nr = {str(password_nr)}")
 
     def read_all(self):
-        return self.service.execute_command("SELECT * FROM password")
+        rows = self.service.execute_command("SELECT * FROM password")
+        for i in rows:
+            print(i)
 
     def delete_data(self, password_nr):
         self.service.execute_command(f"DELETE FROM password WHERE password_nr ={str(password_nr)}")

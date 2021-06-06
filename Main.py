@@ -71,7 +71,6 @@ class Main:
             print("Username: ", username, " | password copied to clipboard for the next 30 seconds")
             self.clipboard.copy_to_clipboard(password)
             return self.action_menu()
-
         else:
             return print("\nUnknown decision")
 
