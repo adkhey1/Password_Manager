@@ -10,7 +10,7 @@ class GeneratePassword:
         password_symblos = self.symbols()
         password_digit = self.digit()
 
-        self.create_password(password_length, password_writing, password_symblos, password_digit)
+        return self.create_password(password_length, password_writing, password_symblos, password_digit)
 
     def ask_length(self):
         password_length = input('Wie lang soll dein Passwort sein?: ')
@@ -101,13 +101,4 @@ class GeneratePassword:
         elif password_writing == 3 and password_symblos == 2 and password_digit == 2:
             choose = upper + lower
 
-        temp = random.sample(choose, length)
-
-        password = "".join(temp)
-
-        print(password)
-
-
-main = GeneratePassword()
-
-main.generate_password()
+        return "".join(random.sample(choose, length))
