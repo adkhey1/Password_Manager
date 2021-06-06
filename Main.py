@@ -68,7 +68,7 @@ class Main:
         elif choose == "2":
             password_nr = input("\nChoose your password number")
             number, title, username, password = self.password_controller.read_data(password_nr)[0]
-            print("Your password for", username, " was copied to clipboard for the next 30 seconds")
+            print("Username: ", username, " | password copied to clipboard for the next 30 seconds")
             self.clipboard.copy_to_clipboard(password)
             return self.action_menu()
 
