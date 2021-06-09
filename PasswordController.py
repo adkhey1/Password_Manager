@@ -11,7 +11,8 @@ class PasswordController:
       password(password_nr INTEGER PRIMARY KEY , title VARCHAR, username VARCHAR, password VARCHAR)""")
 
     def insert_data(self, title, username, password):
-        self.service.execute_command(f"INSERT INTO password (title, username, password) VALUES (?, ?, ?)", (title, username, password))
+        self.service.execute_command(f"INSERT INTO password (title, username, password) VALUES (?, ?, ?)",
+                                     (title, username, password))
 
     def read_data(self, password_nr):
         return self.service.execute_command(f"SELECT * FROM password WHERE password_nr = {str(password_nr)}")

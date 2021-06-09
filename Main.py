@@ -29,7 +29,7 @@ class Main:
         master_password_try = input("Login with your Master Password: ")
 
         if master_password_try == self.master_password_controller.read_master_password():
-            self.master_password_controller.update_timestamp()
+            #self.master_password_controller.update_timestamp()
             return True
         else:
             print('Incorrect Master Password')
@@ -68,7 +68,7 @@ class Main:
 
     def chance_master_password(self):
         new_master_password = input("\nChoose a new Master Password: ")
-        self.masterpassword_controller.update_master_password(self, new_master_password)
+        self.master_password_controller.update_master_password(new_master_password)
 
     def view_data(self):
         choose = input("\n1 to view all Data\n2 to view certain Data: ")
@@ -124,7 +124,10 @@ class Main:
 
         print("Welcome to safe word\n")
 
-        if self.last_login_check():
+        #if self.last_login_check():
+        #   self.action_menu()
+
+        if self.is_correct_master_password():
             self.action_menu()
 
 
