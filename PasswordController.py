@@ -1,5 +1,4 @@
 from DatabaseService import DatabaseService
-import pandas as pd
 
 
 class PasswordController:
