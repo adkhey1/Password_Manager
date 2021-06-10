@@ -21,7 +21,7 @@ class Main:
 
         time_delta = time_now - time_last_login  # Time between now and last login in seconds
 
-        if time_delta >= 10:
+        if time_delta >= 300:
             return False
         else:
             return True
@@ -84,7 +84,7 @@ class Main:
         choose = input("\n1 to view all Data\n2 to view certain Data: ")
         if choose == "1":
             if self.is_correct_master_password():
-                print(self.password_controller.read_all())
+                self.password_controller.read_all()
         elif choose == "2":
             password_nr = input("\nChoose your password number")
             number, title, username, password = self.password_controller.read_data(password_nr)[0]
