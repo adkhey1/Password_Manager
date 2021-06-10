@@ -2,7 +2,7 @@ from MasterPasswordController import MasterPasswordController
 from PasswordController import PasswordController
 from ClipboardService import ClipboardService
 from GeneratePassword import GeneratePassword
-import getpass
+import time
 
 
 class Main:
@@ -14,13 +14,22 @@ class Main:
         self.password_generator = GeneratePassword()
 
     def last_login_check(self):
-        if self.master_password_controller.read_master_login(): #länger als 5 min:
-            if self.is_correct_master_password():
-                self.action_menu()
+
+        time_now = int(time.time())
+        time_last_login = self.master_password_controller.read_last_login()
+
+        time_delta = time_now - time_last_login  # Time between now and last login in seconds
+
+        if time_delta >= 300:
+            return False
         else:
             return True
 
     def is_correct_master_password(self, i=0):
+
+        if self.last_login_check():
+            return True
+
         if i == 5:
             return False
 
@@ -30,6 +39,7 @@ class Main:
 
         if master_password_try == self.master_password_controller.read_master_password():
             #self.master_password_controller.update_timestamp()
+            print(self.master_password_controller.read_last_login())
             return True
         else:
             print('Incorrect Master Password')
@@ -120,12 +130,9 @@ class Main:
     def all(self):
         self.password_controller.create_password_table()
         self.master_password_controller.create_master_password_table()
-        #self.master_password_controller.insert_data()
+        self.master_password_controller.insert_data()
 
         print("Welcome to safe word\n")
-
-        #if self.last_login_check():
-        #   self.action_menu()
 
         if self.is_correct_master_password():
             self.action_menu()
