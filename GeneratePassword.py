@@ -19,7 +19,7 @@ class GeneratePassword:
             if password_length >= 8:
                 return password_length
             else:
-                print('Please enter an integer more than 8')
+                print('Please enter an integer more than 8\n')
                 return self.ask_length()
         except ValueError:
             # Handle the exception
@@ -27,13 +27,14 @@ class GeneratePassword:
             return self.ask_length()
 
     def ask_password_writing(self):
-        password_writing = input('Wie soll ihr Passswort aussehen?\nGroßschreibung(1)\nKleinschreibung(2)'
+        password_writing = input('\nWie soll ihr Passswort aussehen?\nGroßschreibung(1)\nKleinschreibung(2)'
                                  '\nGroß- und kleinschreibung(3)')
         try:
             password_writing = int(password_writing)
             if 0 < password_writing <= 3:
                 return password_writing
             else:
+                print('Please enter an integer between 1 and 3\n')
                 self.ask_password_writing()
         except ValueError:
             # Handle the exception
@@ -48,6 +49,7 @@ class GeneratePassword:
             if 0 < password_symblos <= 2:
                 return password_symblos
             else:
+                print('Please enter an integer between 1 and 2\n')
                 self.symbols()
         except ValueError:
             # Handle the exception
@@ -62,6 +64,7 @@ class GeneratePassword:
             if 0 < password_digit <= 2:
                 return password_digit
             else:
+                print('Please enter an integer between 1 and 3\n')
                 self.digit()
         except ValueError:
             # Handle the exception

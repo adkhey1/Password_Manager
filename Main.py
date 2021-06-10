@@ -53,12 +53,13 @@ class Main:
         if choice == "2":
             password = input("Write down the Password: ")
             self.password_controller.insert_data(title, username, password)
+            print("\nThe new Password is saved.")
         elif choice == "1":
             password = self.password_generator.generate_password()
             self.password_controller.insert_data(title, username, password)
+            print("\nThe new Password is saved.")
         else:
-            print("Unknown decision")
-        print("\nThe new Password is saved.")
+            print("\nUnknown decision")
 
     def delete_password(self):
         choose = input("Write the PasswordNr of the deleted Password: ")
@@ -129,7 +130,7 @@ class Main:
 
     def all(self):
 
-        print("Welcome to safe word\n")
+        print("Welcome to safe world\n")
         self.master_password_controller.create_master_password_table()
         self.password_controller.create_password_table()
 

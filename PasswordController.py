@@ -22,7 +22,7 @@ class PasswordController:
         print("\nNr\tTitle\tUsername\tPassword\n"
               "------------------------------------")
         for i in rows:
-            print(i[0], "\t", i[1], "\t", i[2], "\t", i[3], "\n")
+            print(i[0], "\t", i[1], "\t", i[2], "\t", "*****", "\n")
 
     def delete_data(self, password_nr):
         self.service.execute_command(f"DELETE FROM password WHERE password_nr ={str(password_nr)}")
