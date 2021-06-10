@@ -3,6 +3,7 @@ from PasswordController import PasswordController
 from ClipboardService import ClipboardService
 from GeneratePassword import GeneratePassword
 import time
+import os
 
 
 class Main:
@@ -20,7 +21,7 @@ class Main:
 
         time_delta = time_now - time_last_login  # Time between now and last login in seconds
 
-        if time_delta >= 300:
+        if time_delta >= 10:
             return False
         else:
             return True
@@ -127,18 +128,20 @@ class Main:
                 print("Unknown decision")
 
     def all(self):
-        self.password_controller.create_password_table()
-        self.master_password_controller.create_master_password_table()
-        self.master_password_controller.insert_data()
 
         print("Welcome to safe word\n")
+        self.master_password_controller.create_master_password_table()
+        self.password_controller.create_password_table()
 
-        if self.is_correct_master_password():
-            self.action_menu()
+        try:
+            # Master password exists, ask user for it!
+            self.is_correct_master_password()
+        except IndexError:
+            # Ask the user tho create a master password
+            master_password = input("Choose Master Password: ")
+            self.master_password_controller.insert_data(master_password)
 
-
-            # print(self.password_controller.read_data(1))
-
+        self.action_menu()
 
 main = Main()
 

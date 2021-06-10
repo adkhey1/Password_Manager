@@ -11,9 +11,9 @@ class MasterPasswordController:
         self.service.execute_command("""CREATE TABLE IF NOT EXISTS
       Master_password(master_password VARCHAR, last_login INTEGER)""")
 
-    def insert_data(self):
+    def insert_data(self, master_password):
         self.service.execute_command(f"INSERT INTO Master_password (master_password, last_login) VALUES (?,?)",
-                                     ('Key123', int(time.time())))
+                                     (master_password, int(time.time())))
 
     def read_master_password(self):
         return self.service.execute_command("SELECT master_password FROM Master_password")[0][0]
