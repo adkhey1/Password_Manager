@@ -22,10 +22,10 @@ class MasterPasswordController:
         return self.service.execute_command("SELECT last_login FROM Master_password")[0][0]
 
     def update_master_password(self, master_password):
-        self.service.execute_command("UPDATE Master_password SET master_password = ? WHERE master_password = 'Key123'", str(master_password))
+        self.service.execute_command("UPDATE Master_password SET master_password = ? WHERE master_password = 'Key123'", (str(master_password), ))
 
     def update_timestamp(self):
-        self.service.execute_command("UPDATE Master_password SET last_login = ?", int(time.time()))
+        self.service.execute_command("UPDATE Master_password SET last_login = ?", (int(time.time()), ))
 
     def close_database(self):
         self.connection.close()

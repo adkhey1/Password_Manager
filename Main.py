@@ -38,8 +38,7 @@ class Main:
         master_password_try = input("Login with your Master Password: ")
 
         if master_password_try == self.master_password_controller.read_master_password():
-            #self.master_password_controller.update_timestamp()
-            print(self.master_password_controller.read_last_login())
+            self.master_password_controller.update_timestamp()
             return True
         else:
             print('Incorrect Master Password')
