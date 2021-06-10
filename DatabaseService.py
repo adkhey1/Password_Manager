@@ -15,7 +15,8 @@ class DatabaseService:
         self.connection.commit()
         return cursor.fetchall()
 
-    def close_db_connection(self):                          # close the connection
+    def close_db_connection(self):
+        # close the connection
         self.connection.close()
 
 
