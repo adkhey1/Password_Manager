@@ -95,6 +95,20 @@ class Main:
         else:
             return print("\nUnknown decision")
 
+    def change_data(self):
+        choose = input("\n1 to change Password \n2 to change Username: ")
+        if choose == "1":
+            password_nr = input("Choose your password number: ")
+            new_password = input("Choose the new Password: ")
+            self.password_controller.update_password(password_nr, new_password)
+        elif choose == "2":
+            password_nr = input("Choose your password number: ")
+            new_username = input("Choose the new Username: ")
+            self.password_controller.update_username(password_nr, new_username)
+        else:
+            print("\nUnknown decision")
+
+
     def action_menu(self):
 
         while True:
@@ -105,7 +119,8 @@ class Main:
             print("Press '2' to Delete a Password")
             print("Press '3' to change the Master Password")
             print("Press '4' to view Data")
-            print("Press '5' to exit")
+            print("Press '5' to change Data")
+            print("Press '6' to exit")
             print("---------------------------------\n")
 
             decision = input("Choose your decision: ")
@@ -120,6 +135,9 @@ class Main:
                 self.chance_master_password()
 
             elif decision == "5":
+                self.change_data()
+
+            elif decision == "6":
                 exit()
 
             elif decision == "4":

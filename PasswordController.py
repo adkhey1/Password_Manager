@@ -27,11 +27,21 @@ class PasswordController:
         print("\nNr\tTitle\tUsername\tPassword\n"
               "------------------------------------")
         for i in rows:
-            print(i[0], "\t", i[1], "\t", i[2], "\t", "*****", "\n")
+            print(i[0], "\t", i[1], "\t", i[2], "\t", i[3], "\n")
 
     def delete_data(self, password_nr):
         # delete a specific tuple that you specify in the console with the password number
         self.service.execute_command(f"DELETE FROM password WHERE password_nr ={str(password_nr)}")
+
+    def update_password(self, password_nr, password):
+        # update the master password
+        self.service.execute_command(f"UPDATE password SET password = ? WHERE password_nr ={str(password_nr)}",
+                                     (str(password), ))
+
+    def update_username(self, password_nr, username):
+        # update the master password
+        self.service.execute_command(f"UPDATE password SET username = ? WHERE password_nr ={str(password_nr)}",
+                                     (str(username), ))
 
     def close_database(self):
         # close connection to the data base
