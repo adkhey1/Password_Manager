@@ -4,9 +4,10 @@ import sqlite3
 class DatabaseService:
 
     def __init__(self):
-        self.connection = sqlite3.connect("Database.db")                # connect to the database
+        # connect to the database
+        self.connection = sqlite3.connect("Database.db")
 
-    def execute_command(self, sql_command, params=None):               #
+    def execute_command(self, sql_command, params=None):
         cursor = self.connection.cursor()
         if params is None:
             cursor.execute(sql_command)
