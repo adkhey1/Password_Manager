@@ -108,7 +108,6 @@ class Main:
         else:
             print("\nUnknown decision")
 
-
     def action_menu(self):
 
         while True:
@@ -161,6 +160,7 @@ class Main:
             self.master_password_controller.insert_data(master_password)
 
         self.action_menu()
+
 
 main = Main()
 
