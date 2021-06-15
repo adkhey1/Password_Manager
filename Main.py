@@ -4,6 +4,15 @@ from ClipboardService import ClipboardService
 from GeneratePassword import GeneratePassword
 import time
 import hashlib
+import sys
+from getpass import getpass
+
+for thing in sys.argv:
+    operations = ["add", "delete", "update", "read"]
+    if operations.extend(sys.argv[1]):
+        if sys.argv[1] = "add":
+
+    print(thing, end='  ')
 
 
 class Main:
@@ -21,7 +30,7 @@ class Main:
 
         time_delta = time_now - time_last_login  # Time between now and last login in seconds
 
-        if time_delta >= 300:
+        if time_delta >= 10:
             return False
         else:
             return True
@@ -34,7 +43,7 @@ class Main:
         if i == 5:
             return False
 
-        #master_password_try = getpass.getpass(prompt='Password: ', stream=None)
+        #master_password_try = getpass("Password: ")
 
         master_password_try = input("Login with your Master Password: ")
         master_password_try = hashlib.sha512(master_password_try.encode("utf-8")).hexdigest()
