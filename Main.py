@@ -3,7 +3,7 @@ from PasswordController import PasswordController
 from ClipboardService import ClipboardService
 from GeneratePassword import GeneratePassword
 import time
-import os
+import hashlib
 
 
 class Main:
@@ -37,6 +37,7 @@ class Main:
         #master_password_try = getpass.getpass(prompt='Password: ', stream=None)
 
         master_password_try = input("Login with your Master Password: ")
+        master_password_try = hashlib.sha512(master_password_try.encode("utf-8")).hexdigest()
 
         if master_password_try == self.master_password_controller.read_master_password():
             self.master_password_controller.update_timestamp()
@@ -79,6 +80,7 @@ class Main:
 
     def chance_master_password(self):
         new_master_password = input("\nChoose a new Master Password: ")
+        new_master_password = hashlib.sha512(new_master_password.encode("utf-8")).hexdigest()
         self.master_password_controller.update_master_password(new_master_password)
 
     def view_data(self):
@@ -157,6 +159,7 @@ class Main:
         except IndexError:
             # Ask the user tho create a master password
             master_password = input("Choose Master Password: ")
+            master_password = hashlib.sha512(master_password.encode("utf-8")).hexdigest()
             self.master_password_controller.insert_data(master_password)
 
         self.action_menu()
