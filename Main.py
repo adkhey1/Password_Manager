@@ -12,6 +12,7 @@ for thing in sys.argv:
     if operations.extend(sys.argv[1]):
         if sys.argv[1] = "add":
 
+
     print(thing, end='  ')
 
 
