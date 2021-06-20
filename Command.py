@@ -36,9 +36,9 @@ class Command:
         if i == 5:
             return False
 
-        # master_password_try = getpass("Password: ")
+        master_password_try = getpass("Login with your Master Password: ")
 
-        master_password_try = input("Login with your Master Password: ")
+        #master_password_try = input("Login with your Master Password: ")
         master_password_try = hashlib.sha512(master_password_try.encode("utf-8")).hexdigest()
 
         if master_password_try == self.master_password_controller.read_master_password():
@@ -74,7 +74,7 @@ class Command:
         elif args.operation == "copy" and args.n:
             self.is_correct_master_password()
             number, title, username, password = self.password_controller.read_data(args.n)[0]
-            print("Username: ", title, " | password copied to clipboard for the next 30 seconds")
+            print("Username: ", username, " | password copied to clipboard for the next 30 seconds")
             self.clipboard.copy_to_clipboard(password)
 
         elif args.operation == "read":

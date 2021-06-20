@@ -36,9 +36,9 @@ class Console:
         if i == 5:
             return False
 
-        #master_password_try = getpass("Password: ")
+        master_password_try = getpass("Login with your Master Password: ")
 
-        master_password_try = input("Login with your Master Password: ")
+        #master_password_try = input("Login with your Master Password: ")
         master_password_try = hashlib.sha512(master_password_try.encode("utf-8")).hexdigest()
 
         if master_password_try == self.master_password_controller.read_master_password():
