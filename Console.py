@@ -18,16 +18,16 @@ class Console:
 
     def last_login_check(self):
 
-    #the time is stored in an integer
-    #the current time is subtracted from the time of the last login
-    #and the result (time_delta) is the seconds between the logins.
+        # the time is stored in an integer
+        # the current time is subtracted from the time of the last login
+        # and the result (time_delta) is the seconds between the logins.
 
         time_now = int(time.time())
         time_last_login = self.master_password_controller.read_last_login()
 
         time_delta = time_now - time_last_login
 
-    #check if it is more than 300 seconds (5min)
+        # check if it is more than 300 seconds (5min)
 
         if time_delta >= 300:
             return False
@@ -35,6 +35,11 @@ class Console:
             return True
 
     def is_correct_master_password(self, i=0):
+
+        # i is the number of failed attempts of the masterpassoword
+
+        # if the method 'last_login_check' is true then the 'is_master_pssword_correct'
+        # is automatically ture and you don't have to enter a master_password_try anymore
 
         if self.last_login_check():
             return True
@@ -44,8 +49,13 @@ class Console:
 
         master_password_try = getpass("Login with your Master Password: ")
 
-        #master_password_try = input("Login with your Master Password: ")
+        # the input of master password get hashed
+
         master_password_try = hashlib.sha512(master_password_try.encode("utf-8")).hexdigest()
+
+        # if the hashed master_password_try is the same like the hashed master_password in the masterpassword table
+        # it returns true
+        # otherwise i is incremented up to 5 and after 5 incorrect entries the program aborts the process.
 
         if master_password_try == self.master_password_controller.read_master_password():
             self.master_password_controller.update_timestamp()

@@ -36,6 +36,11 @@ class Command:
 
     def is_correct_master_password(self, i=0):
 
+        # i is the number of failed attempts of the masterpassoword
+
+        # if the method 'last_login_check' is true then the 'is_master_pssword_correct'
+        # is automatically ture and you don't have to enter a master_password_try anymore
+
         if self.last_login_check():
             return True
 
@@ -44,13 +49,13 @@ class Command:
 
         master_password_try = getpass("Login with your Master Password: ")
 
-    # the input of master password get hashed
+        # the input of master password get hashed
 
         master_password_try = hashlib.sha512(master_password_try.encode("utf-8")).hexdigest()
 
-    # if the hashed master_password_try is the same like the hashed master_password in the masterpassword table
-    # it returns true
-    # otherwise i is incremented up to 5 and after 5 incorrect entries the program aborts the process.
+        # if the hashed master_password_try is the same like the hashed master_password in the masterpassword table
+        # it returns true
+        # otherwise i is incremented up to 5 and after 5 incorrect entries the program aborts the process.
 
         if master_password_try == self.master_password_controller.read_master_password():
             self.master_password_controller.update_timestamp()
@@ -62,8 +67,8 @@ class Command:
 
     def process(self):
 
-    # all arugments are added
-    # with 'choice' you set an input condition
+        # all arugments are added
+        # with 'choice' you set an input condition
 
         parser = argparse.ArgumentParser()
         parser.add_argument("operation", choices=["add", "delete", "copy", "update", "read"])
@@ -75,27 +80,27 @@ class Command:
         parser.add_argument("-m", "-master-password")
         args = parser.parse_args()
 
-    # here all different possible inputs are checked with an if statement
-    # If you write in illogical arguments, you will fall into the else case and get an error printed
-    # For each possible case, the program jumps further into the PasswordController or
-    # MasterpasswordContorller class, where the processing takes place.
+        # here all different possible inputs are checked with an if statement
+        # If you write in illogical arguments, you will fall into the else case and get an error printed
+        # For each possible case, the program jumps further into the PasswordController or
+        # MasterpasswordContorller class, where the processing takes place.
 
-    # for 'add' and 'update' the operation 'or' was used and then in the method
-    # an if was used to see which of the two variables in the terminal was given as an argument.
-    # this way the code can be shortened a little.
+        # for 'add' and 'update' the operation 'or' was used and then in the method
+        # an if was used to see which of the two variables in the terminal was given as an argument.
+        # this way the code can be shortened a little.
 
-    # it asks for the master password every time you change it, but since you have 5 minutes of free access,
-    # it only asks for it the first time you use it.
+        # it asks for the master password every time you change it, but since you have 5 minutes of free access,
+        # it only asks for it the first time you use it.
 
         if args.operation == "add" and args.t and args.u and (args.p or args.generatepassword):
-            self.is_correct_master_password()
-            if args.generatepassword:
-                password = self.password_generator.generate_password()
-            else:
-                password = args.p
+            if self.is_correct_master_password():
+                if args.generatepassword:
+                    password = self.password_generator.generate_password()
+                else:
+                    password = args.p
 
-            self.password_controller.insert_data(args.t, args.u, password)
-            print("The tuple insert to database")
+                self.password_controller.insert_data(args.t, args.u, password)
+                print("The tuple insert to database")
 
         elif args.operation == "copy" and args.n:
             if self.is_correct_master_password():
@@ -108,29 +113,29 @@ class Command:
                 self.password_controller.read_all()
 
         elif args.operation == "delete" and args.n:
-            self.is_correct_master_password()
-            choose = input("Are you sure you want to delete the data?\n\n1 to delete\n2 to cancel: ")
-            if choose == "1":
-                self.password_controller.delete_data(args.n)
-                print(f"The tuple {args.n} deleted")
-            elif choose == "2":
-                print("The process was canceled")
-            else:
-                print("Unknown decision")
+            if self.is_correct_master_password():
+                choose = input("Are you sure you want to delete the data?\n\n1 to delete\n2 to cancel: ")
+                if choose == "1":
+                    self.password_controller.delete_data(args.n)
+                    print(f"The tuple {args.n} deleted")
+                elif choose == "2":
+                    print("The process was canceled")
+                else:
+                    print("Unknown decision")
 
         elif args.operation == "update" and args.m:
-            self.is_correct_master_password()
-            args.m = hashlib.sha512(args.m.encode("utf-8")).hexdigest()
-            self.master_password_controller.update_master_password(args.m)
-            print("The Master Password was changed successfully")
+            if self.is_correct_master_password():
+                args.m = hashlib.sha512(args.m.encode("utf-8")).hexdigest()
+                self.master_password_controller.update_master_password(args.m)
+                print("The Master Password was changed successfully")
 
         elif args.operation == "update" and args.n and (args.p or args.u):
-            self.is_correct_master_password()
-            if args.p:
-                self.password_controller.update_password(args.n, args.p)
-            else:
-                self.password_controller.update_username(args.n, args.u)
-            print("The Password was changed successfully")
+            if self.is_correct_master_password():
+                if args.p:
+                    self.password_controller.update_password(args.n, args.p)
+                else:
+                    self.password_controller.update_username(args.n, args.u)
+                print("The Password was changed successfully")
 
         else:
             print("ERROR")
