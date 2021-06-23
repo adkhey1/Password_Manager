@@ -44,8 +44,13 @@ class Command:
 
         master_password_try = getpass("Login with your Master Password: ")
 
-        #master_password_try = input("Login with your Master Password: ")
+    # the input of master password get hashed
+
         master_password_try = hashlib.sha512(master_password_try.encode("utf-8")).hexdigest()
+
+    # if the hashed master_password_try is the same like the hashed master_password in the masterpassword table
+    # it returns true
+    # otherwise i is incremented up to 5 and after 5 incorrect entries the program aborts the process.
 
         if master_password_try == self.master_password_controller.read_master_password():
             self.master_password_controller.update_timestamp()
@@ -93,14 +98,14 @@ class Command:
             print("The tuple insert to database")
 
         elif args.operation == "copy" and args.n:
-            self.is_correct_master_password()
-            number, title, username, password = self.password_controller.read_data(args.n)[0]
-            print("Username: ", username, " | password copied to clipboard for the next 30 seconds")
-            self.clipboard.copy_to_clipboard(password)
+            if self.is_correct_master_password():
+                number, title, username, password = self.password_controller.read_data(args.n)[0]
+                print("Username: ", username, " | password copied to clipboard for the next 30 seconds")
+                self.clipboard.copy_to_clipboard(password)
 
         elif args.operation == "read":
-            self.is_correct_master_password()
-            self.password_controller.read_all()
+            if self.is_correct_master_password():
+                self.password_controller.read_all()
 
         elif args.operation == "delete" and args.n:
             self.is_correct_master_password()
