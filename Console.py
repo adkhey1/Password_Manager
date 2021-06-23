@@ -66,6 +66,12 @@ class Console:
             return self.is_correct_master_password(i)
 
     def new_password(self):
+
+        # asks for title username and password and then adds it to the database with the method 'insert_data'
+        # When you are prompted for a password, you have the choice of typing one in or having it created yourself
+        # for the choice you have the variable 'choice' which is then queried with an if statement
+        # Depending on the choice, the program jumps to the different methods
+
         title = input("\nWrite down the Title: ")
         username = input("Write down the Username: ")
         choice = input("1 to autogenerate password \n2 to write your own password: ")
@@ -81,6 +87,11 @@ class Console:
             print("\nUnknown decision")
 
     def delete_password(self):
+
+        # the password number is asked for because it is a unique value
+        # when you have dialled the password number you will be asked again
+        # if you are sure you want to delete the dataset
+
         choose = input("Write the PasswordNr of the deleted Password: ")
         delete_decision = input("\n---------------------------------"
                                 "\nAre you sure you want to delete the data?\n\n1 to delete\n2 to cancel"
@@ -97,11 +108,21 @@ class Console:
             return print("Unknown decision\n"), self.delete_password()
 
     def chance_master_password(self):
+
+        # You choose a new master password, which is directly hashed again
+        # Then it is replaced with the old master password in the 'update_password' method
+
         new_master_password = input("\nChoose a new Master Password: ")
         new_master_password = hashlib.sha512(new_master_password.encode("utf-8")).hexdigest()
         self.master_password_controller.update_master_password(new_master_password)
 
     def view_data(self):
+
+        # you have the choice of seeing all passwords or a specific one, which you request with the password number
+        # for all passwords we have a 'read_all' method and for a specific one a 'read_data' method
+        # for the specific password query, the password is stored in the clipborad for 30 seconds
+        # using the clipborad class
+
         choose = input("\n1 to view all Data\n2 to view certain Data: ")
         if choose == "1":
             if self.is_correct_master_password():
@@ -116,6 +137,12 @@ class Console:
             return print("\nUnknown decision")
 
     def change_data(self):
+
+        # here again you have the choice to change the password or the username
+        # you will be asked again for the password number and the new changed variable (username or password)
+        # then it jumps to the 'update_username' or 'update_password' method to replace the data
+        # in th database with the variables
+
         choose = input("\n1 to change Password \n2 to change Username: ")
         if choose == "1":
             password_nr = input("Choose your password number: ")
@@ -129,6 +156,10 @@ class Console:
             print("\nUnknown decision")
 
     def action_menu(self):
+
+        # we print the action menu we have created
+        # with while true we print it until the program is closed
+        # there we have again a variable 'decision' to choose the different requirements
 
         while True:
 
@@ -167,6 +198,8 @@ class Console:
 
     def process(self):
 
+        # we create the 'password' and 'master_password' table if it has not already been created
+
         print("Welcome to safe world\n")
         self.master_password_controller.create_master_password_table()
         self.password_controller.create_password_table()
@@ -176,6 +209,7 @@ class Console:
             self.is_correct_master_password()
         except IndexError:
             # Ask the user tho create a master password
+            # The password get hashed and insert in der master password table
             master_password = input("Choose Master Password: ")
             master_password = hashlib.sha512(master_password.encode("utf-8")).hexdigest()
             self.master_password_controller.insert_data(master_password)
