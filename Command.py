@@ -18,10 +18,16 @@ class Command:
 
     def last_login_check(self):
 
+    # the time is stored in an integer
+    # the current time is subtracted from the time of the last login
+    # and the result (time_delta) is the seconds between the logins.
+
         time_now = int(time.time())
         time_last_login = self.master_password_controller.read_last_login()
 
-        time_delta = time_now - time_last_login  # Time between now and last login in seconds
+        time_delta = time_now - time_last_login
+
+    # check if it is more than 300 seconds (5min)
 
         if time_delta >= 300:
             return False
@@ -51,6 +57,9 @@ class Command:
 
     def process(self):
 
+    # all arugments are added
+    # with 'choice' you set an input condition
+
         parser = argparse.ArgumentParser()
         parser.add_argument("operation", choices=["add", "delete", "copy", "update", "read"])
         parser.add_argument("-n", "-number", type=int)
@@ -60,6 +69,18 @@ class Command:
         parser.add_argument("-generatepassword", action="store_true")
         parser.add_argument("-m", "-master-password")
         args = parser.parse_args()
+
+    # here all different possible inputs are checked with an if statement
+    # If you write in illogical arguments, you will fall into the else case and get an error printed
+    # For each possible case, the program jumps further into the PasswordController or
+    # MasterpasswordContorller class, where the processing takes place.
+
+    # for 'add' and 'update' the operation 'or' was used and then in the method
+    # an if was used to see which of the two variables in the terminal was given as an argument.
+    # this way the code can be shortened a little.
+
+    # it asks for the master password every time you change it, but since you have 5 minutes of free access,
+    # it only asks for it the first time you use it.
 
         if args.operation == "add" and args.t and args.u and (args.p or args.generatepassword):
             self.is_correct_master_password()
@@ -115,7 +136,7 @@ class Command:
         self.password_controller.create_password_table()
 
         try:
-            # Master password exists, go in operation method!
+            # Master password exists, go in process method!
             self.process()
         except IndexError:
             # Ask the user tho create a master password
