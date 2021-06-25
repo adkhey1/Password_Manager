@@ -113,3 +113,4 @@ class GeneratePassword:
             choose = upper + lower
         # creates an empty String and adds the selection with the length and return it
         return "".join(random.sample(choose, length))
+
