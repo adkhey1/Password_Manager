@@ -39,7 +39,7 @@ class GeneratePassword:
                 return password_writing
             else:
                 print('Please enter an integer between 1 and 3\n')
-                self.ask_password_writing()
+                return self.ask_password_writing()
         except ValueError:
             # Handle the exception
             print('Please enter an integer between 1 and 3')
@@ -56,7 +56,7 @@ class GeneratePassword:
                 return password_symbols
             else:
                 print('Please enter an integer between 1 and 2\n')
-                self.symbols()
+                return self.symbols()
         except ValueError:
             # Handle the exception
             print('Please enter an integer 1 or 2')
@@ -73,7 +73,7 @@ class GeneratePassword:
                 return password_digit
             else:
                 print('Please enter an integer between 1 and 3\n')
-                self.digit()
+                return self.digit()
         except ValueError:
             # Handle the exception
             print('Please enter an integer 1 or 2')

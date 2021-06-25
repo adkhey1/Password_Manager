@@ -18,16 +18,16 @@ class Command:
 
     def last_login_check(self):
 
-    # the time is stored in an integer
-    # the current time is subtracted from the time of the last login
-    # and the result (time_delta) is the seconds between the logins.
+        # the time is stored in an integer
+        # the current time is subtracted from the time of the last login
+        # and the result (time_delta) is the seconds between the logins.
 
         time_now = int(time.time())
         time_last_login = self.master_password_controller.read_last_login()
 
         time_delta = time_now - time_last_login
 
-    # check if it is more than 300 seconds (5min)
+        # check if it is more than 300 seconds (5min)
 
         if time_delta >= 300:
             return False
